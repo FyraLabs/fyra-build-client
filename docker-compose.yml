@@ -1,6 +1,6 @@
 services:
   sccache-server:
-    build: .
+    image: ghcr.io/fyralabs/fyra-build-client:main
     privileged: true
     depends_on:
       - tailscale
