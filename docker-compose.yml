@@ -1,0 +1,26 @@
+services:
+  sccache-server:
+    build: .
+    privileged: true
+    depends_on:
+      - tailscale
+    restart: unless-stopped
+    volumes:
+      - cache:/var/cache/sccache
+      - /tmp/tailscale:/tmp
+
+  tailscale:
+    image: tailscale/tailscale:latest
+    restart: always
+    volumes:
+      - tailscale:/var/lib/tailscale
+      - /tmp/tailscale:/tmp
+
+    env_file:
+      - .env
+    environment:
+      - TS_STATE_DIR=/var/lib/tailscale
+
+volumes:
+  cache:
+  tailscale:
