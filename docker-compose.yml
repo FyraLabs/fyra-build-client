@@ -1,5 +1,8 @@
 services:
   sccache-server:
+    build:
+      context: .
+      dockerfile: Dockerfile
     image: ghcr.io/fyralabs/fyra-build-client:main
     privileged: true
     depends_on:
@@ -8,6 +11,8 @@ services:
     volumes:
       - cache:/var/cache/sccache
       - /tmp/tailscale:/tmp
+    env_file:
+      - .env
 
   tailscale:
     image: tailscale/tailscale:latest

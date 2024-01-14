@@ -19,6 +19,10 @@ while [ "$PUBLIC_ADDR" == "null" ]; do
     export PUBLIC_ADDR=$(get_tailscale_ip)
 done
 
+export PUBLIC_ADDR="$PUBLIC_ADDR:10600"
+
+ip addr show
+
 REQUIRED_ENVS=(
     "SERVER_TOKEN"
     "SCHEDULER_URL"
@@ -36,4 +40,4 @@ done
 
 envsubst <$CONFIG_TEMPLATE > $CONFIG_FILE
 
-sccache-dist server --config $CONFIG_FILE
+sccache-dist server --config $CONFIG_FILE --syslog debug
