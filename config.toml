@@ -13,7 +13,7 @@ scheduler_url = "$SCHEDULER_URL"
 [builder]
 type = "overlay"
 # The directory under which a sandboxed filesystem will be created for builds.
-build_dir = "/var/tmp/build"
+build_dir = "/tmp/build"
 # The path to the bubblewrap version 0.3.0+ `bwrap` binary.
 bwrap_path = "/usr/bin/bwrap"
 

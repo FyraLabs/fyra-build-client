@@ -10,7 +10,7 @@ services:
     restart: unless-stopped
     volumes:
       - cache:/var/cache
-      - /tmp/tailscale:/tmp
+      - /tmp:/tmp
     env_file:
       - .env
     environment:

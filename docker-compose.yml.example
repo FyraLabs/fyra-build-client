@@ -6,6 +6,7 @@ services:
     restart: unless-stopped
     volumes:
       - cache:/var/cache
+      - /tmp:/tmp
       #- build:/var/tmp/build
 
     # Set the below environment variables to configure the sccache server.
