@@ -12,10 +12,10 @@ services:
     env_file:
       - .env
 
-    # env:
-    #   - SCHEDULER_URL=http://sccache-scheduler:8080
-    #   - SERVER_TOKEN=xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-    #   - SCCACHE_LOG=sccache=trace # for debugging
+    env:
+      # - SCHEDULER_URL=http://sccache-scheduler:8080
+      # - SERVER_TOKEN=xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+      - SCCACHE_LOG=sccache=trace # for debugging
 
 volumes:
   cache:
