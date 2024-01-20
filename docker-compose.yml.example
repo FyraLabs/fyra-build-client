@@ -5,7 +5,7 @@ services:
     privileged: true
     restart: unless-stopped
     volumes:
-      - cache:/var/cache/sccache
+      - cache:/var/cache
       #- build:/var/tmp/build
 
     # Set the below environment variables to configure the sccache server.
