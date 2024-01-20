@@ -6,6 +6,7 @@ services:
     restart: unless-stopped
     volumes:
       - cache:/var/cache/sccache
+      - build:/var/tmp/build
 
     # Set the below environment variables to configure the sccache server.
 
@@ -15,7 +16,8 @@ services:
     environment:
       # - SCHEDULER_URL=http://sccache-scheduler:8080
       # - SERVER_TOKEN=xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-      - SCCACHE_LOG=sccache=trace # for debugging
+      - SCCACHE_LOG=trace # for debugging
 
 volumes:
   cache:
+  build:

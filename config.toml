@@ -1,5 +1,6 @@
 # This is where client toolchains will be stored.
 cache_dir = "/var/cache/sccache"
+
 # The maximum size of the toolchain cache, in bytes.
 # If unspecified the default is 10GB.
 # toolchain_cache_size = 10737418240
@@ -12,7 +13,7 @@ scheduler_url = "$SCHEDULER_URL"
 [builder]
 type = "overlay"
 # The directory under which a sandboxed filesystem will be created for builds.
-build_dir = "/tmp/build"
+build_dir = "/var/tmp/build"
 # The path to the bubblewrap version 0.3.0+ `bwrap` binary.
 bwrap_path = "/usr/bin/bwrap"
 

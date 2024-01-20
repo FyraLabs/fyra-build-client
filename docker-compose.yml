@@ -14,7 +14,7 @@ services:
     env_file:
       - .env
     environment:
-      - SCCACHE_LOG=sccache=trace
+      - SCCACHE_LOG=trace
 
   # tailscale:
   #   container_name: tailscale
