@@ -1,36 +1,17 @@
 services:
   sccache-server:
-    build: .
+    image: ghcr.io/fyralabs/fyra-build-client:main
     privileged: true
-    depends_on:
-      - tailscale
     restart: unless-stopped
     volumes:
       - cache:/var/cache/sccache
-      - /tmp/tailscale:/tmp
 
     # Set the below environment variables to configure the sccache server.
 
     env:
       - SCHEDULER_URL=http://sccache-scheduler:8080
       - SERVER_TOKEN=xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-
-  tailscale:
-    image: tailscale/tailscale:latest
-    restart: always
-    volumes:
-      - tailscale:/var/lib/tailscale
-      - /tmp/tailscale:/tmp
-
-
-    # Set the below environment variables to configure the Tailscale peer.
-    # env_file:
-    #   - .env
-    # env:
-      # - TS_AUTH_KEY=tskey-xxxxxxxxxxxxxxxxxxxxxxxx
-    environment:
-      - TS_STATE_DIR=/var/lib/tailscale
+      - SCCACHE_LOG=sccache=trace # for debugging
 
 volumes:
   cache:
-  tailscale:

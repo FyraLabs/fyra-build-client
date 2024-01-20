@@ -13,12 +13,9 @@ This repository contains an easy to deploy build cluster node.
 
 1. Install Docker and Docker Compose
 
-2. Set up a tailnet where the sccache cluster will run
+2. Join the tailnet on the host machine
 
-3. Set up a sccache-dist server
+3. Run `tailscale ip` to get the IP address of the host machine, take note of this IP address, becuase we will be using this as the `PUBLIC_ADDR` environment variable in the next step.
 
-4. Create a Docker Compose file, see example in [docker-compose.yml](docker-compose.yml.example)
-
-5. Run `docker-compose up -d`
-
-6. Set up your build system to use the sccache cluster
+4. Copy `docker-compose.yml.example` from this repo to `docker-compose.yml` and edit it to your needs
+5. Run `docker-compose up -d` to start the build cluster node

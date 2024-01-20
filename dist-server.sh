@@ -9,25 +9,26 @@ get_tailscale_ip() {
     curl --unix-socket $TAILSCALE_SOCKET -H "Host: local-tailscaled.sock" http://localhost/localapi/v0/status | jq .Self.TailscaleIPs[0] -r
 }
 
-export PUBLIC_ADDR=$(get_tailscale_ip)
+# export PUBLIC_ADDR=$(get_tailscale_ip)
 
-# while is "null"
+# # while is "null"
 
-while [ "$PUBLIC_ADDR" == "null" ]; do
-    echo "Waiting for tailscale to start..."
-    sleep 1
-    export PUBLIC_ADDR=$(get_tailscale_ip)
-done
+# while [ "$PUBLIC_ADDR" == "null" ]; do
+#     echo "Waiting for tailscale to start..."
+#     sleep 1
+#     export PUBLIC_ADDR=$(get_tailscale_ip)
+# done
 
-export PUBLIC_ADDR="$PUBLIC_ADDR:10600"
 
 ip addr show
 
 REQUIRED_ENVS=(
     "SERVER_TOKEN"
     "SCHEDULER_URL"
+    "PUBLIC_ADDR"
 )
 
+export PUBLIC_ADDR="$PUBLIC_ADDR:10600"
 # shellcheck disable=SC2068
 for env in ${REQUIRED_ENVS[@]}; do
     if [ -z "${!env}" ]; then
@@ -40,4 +41,4 @@ done
 
 envsubst <$CONFIG_TEMPLATE > $CONFIG_FILE
 
-sccache-dist server --config $CONFIG_FILE --syslog debug
+sccache-dist server --config $CONFIG_FILE
