@@ -9,10 +9,13 @@ services:
 
     # Set the below environment variables to configure the sccache server.
 
-    env:
-      - SCHEDULER_URL=http://sccache-scheduler:8080
-      - SERVER_TOKEN=xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-      - SCCACHE_LOG=sccache=trace # for debugging
+    env_file:
+      - .env
+
+    # env:
+    #   - SCHEDULER_URL=http://sccache-scheduler:8080
+    #   - SERVER_TOKEN=xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+    #   - SCCACHE_LOG=sccache=trace # for debugging
 
 volumes:
   cache:
