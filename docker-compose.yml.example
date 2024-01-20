@@ -1,5 +1,6 @@
 services:
   sccache-server:
+    network_mode: host
     image: ghcr.io/fyralabs/fyra-build-client:main
     privileged: true
     restart: unless-stopped
