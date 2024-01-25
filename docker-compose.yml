@@ -1,6 +1,7 @@
 services:
-  sccache-server:
+  builder:
     network_mode: host
+    container_name: builder
     build:
       context: .
       dockerfile: Dockerfile
@@ -13,23 +14,15 @@ services:
       - /tmp:/tmp
     env_file:
       - .env
-    environment:
-      - SCCACHE_LOG=trace
+      - .env.auth
+    labels:
+      - "com.centurylinklabs.watchtower.enable=true"
 
-  # tailscale:
-  #   container_name: tailscale
-  #   network_mode: host
-  #   privileged: true
-  #   image: tailscale/tailscale:latest
-  #   restart: always
-  #   volumes:
-  #     - tailscale:/var/lib/tailscale
-  #     - /tmp/tailscale:/tmp
-
-  #   env_file:
-  #     - .env
-  #   environment:
-  #     - TS_STATE_DIR=/var/lib/tailscale
+  watchtower:
+    image: containrrr/watchtower
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    command: --interval 30
 
 volumes:
   cache:

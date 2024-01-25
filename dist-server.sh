@@ -4,7 +4,6 @@ CONFIG_FILE=/etc/sccache.conf
 CONFIG_TEMPLATE=/opt/config.toml.tmpl
 TAILSCALE_SOCKET=/tmp/tailscaled.sock
 
-
 get_tailscale_ip() {
     curl --unix-socket $TAILSCALE_SOCKET -H "Host: local-tailscaled.sock" http://localhost/localapi/v0/status | jq .Self.TailscaleIPs[0] -r
 }
@@ -23,9 +22,10 @@ get_tailscale_ip() {
 ip addr show
 
 REQUIRED_ENVS=(
-    "SERVER_TOKEN"
-    "SCHEDULER_URL"
-    "PUBLIC_ADDR"
+    # "SERVER_TOKEN"
+    # "SCHEDULER_URL"
+    "SCHEDULER_ADDR"
+    "NETNAME"
 )
 
 export PUBLIC_ADDR="$PUBLIC_ADDR:10600"
@@ -39,6 +39,8 @@ done
 
 # We need to somehow get the tailscale IP address of this container
 
-envsubst <$CONFIG_TEMPLATE > $CONFIG_FILE
+# envsubst <$CONFIG_TEMPLATE > $CONFIG_FILE
 
-sccache-dist server --config $CONFIG_FILE
+# sccache-dist server --config $CONFIG_FILE
+
+iceccd -n $NETNAME -s $SCHEDULER_ADDR -vvv

@@ -12,5 +12,7 @@ COPY config.toml /opt/config.toml.tmpl
 COPY dist-server.sh /opt/dist-server.sh
 RUN chmod +x /opt/dist-server.sh
 
+EXPOSE 8765
+
 ENTRYPOINT ["/opt/dist-server.sh"]
 CMD ["/opt/dist-server.sh"]
