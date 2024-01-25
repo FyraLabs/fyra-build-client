@@ -65,7 +65,6 @@ echo "Starting setup..."
 # sudo systemctl disable --now firewalld || true
 # sudo systemctl disable --now ufw || true
 
-
 SCHEDULER_ADDR=$(tailscale ip -4 $ZIRCON_SCHEDULER)
 PUBLIC_ADDR=$(tailscale ip -4)
 
@@ -86,5 +85,6 @@ if docker compose ps | grep -q "builder"; then
 else
     echo "Builder is not running, starting it now..."
     docker compose pull
+    systemctl disable --now iceccd || true
     docker compose up -d
 fi
