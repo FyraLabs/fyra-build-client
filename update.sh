@@ -85,5 +85,5 @@ if docker compose ps | grep -q "builder"; then
     docker compose up -d
 else
     echo "Builder is not running, starting it now..."
-    docker compose up -d
+    docker compose up -d --pull
 fi
