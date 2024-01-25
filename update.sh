@@ -62,8 +62,8 @@ echo "Starting setup..."
 
 # Disable firewalls so it wont cause problems with docker
 
-sudo systemctl disable --now firewalld || true
-sudo systemctl disable --now ufw || true
+# sudo systemctl disable --now firewalld || true
+# sudo systemctl disable --now ufw || true
 
 
 SCHEDULER_ADDR=$(tailscale ip -4 $ZIRCON_SCHEDULER)
