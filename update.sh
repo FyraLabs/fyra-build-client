@@ -76,7 +76,7 @@ if docker compose ps | grep -q "builder"; then
     # Pull and restart
 
     docker compose pull
-    docker compose up -d --force-recreate
+    docker compose up -d
 else
     echo "Builder is not running, starting it now..."
     docker compose up -d
