@@ -13,6 +13,7 @@ COPY dist-server.sh /opt/dist-server.sh
 RUN chmod +x /opt/dist-server.sh
 
 EXPOSE 8765
-
+EXPOSE 10245
+EXPOSE 8766
 ENTRYPOINT ["/opt/dist-server.sh"]
 CMD ["/opt/dist-server.sh"]
