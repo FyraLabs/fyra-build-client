@@ -6,6 +6,14 @@ echo "Welcome to the Fyra Buildsys Setup script!"
 
 echo "Checking for requirements..."
 
+# check if git repo is up to date
+if ! git diff-index --quiet HEAD --; then
+    echo "Git repo is not up to date!"
+    # pull and run the script again
+    git pull
+    exec $0
+fi
+
 check_tailscale() {
     if ! command -v tailscale &>/dev/null; then
         echo "tailscale could not be found"
