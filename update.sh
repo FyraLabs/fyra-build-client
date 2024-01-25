@@ -67,7 +67,7 @@ echo """
 SCHEDULER_ADDR=$SCHEDULER_ADDR
 PUBLIC_ADDR=$PUBLIC_ADDR
 NETNAME=zircon
-"""
+""" > .env
 
 # check if the compose is running
 
