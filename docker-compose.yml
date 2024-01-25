@@ -14,7 +14,7 @@ services:
       - /tmp:/tmp
     env_file:
       - .env
-      - .env.auth
+      # - .env.auth
     labels:
       - "com.centurylinklabs.watchtower.enable=true"
 
